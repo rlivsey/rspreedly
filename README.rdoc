@@ -1,0 +1,7 @@
+= rspreedly
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Richard Livsey. See LICENSE for details.
