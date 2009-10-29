@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rspreedly}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Richard Livsey"]
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "lib/rspreedly/payment_method.rb",
      "lib/rspreedly/subscriber.rb",
      "lib/rspreedly/subscription_plan.rb",
+     "rspreedly.gemspec",
      "spec/config_spec.rb",
      "spec/fixtures/complimentary_failed_active.xml",
      "spec/fixtures/complimentary_failed_inactive.xml",
