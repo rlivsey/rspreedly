@@ -10,6 +10,18 @@ There are a few of these knocking about, but I couldn't find one particular to m
  * Covers the entire API, not just parts of it
  * Rubyish/ActiveRecord style access
 
+== Installation
+
+It's on Gemcutter, so as long as you're setup to use that:
+
+    gem install rspreedly
+    
+Otherwise
+
+    gem install gemcutter
+    gem tumble
+    gem install rspreedly
+
 == Usage
 
 Configure your API key and site name for your account:
