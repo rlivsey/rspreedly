@@ -10,8 +10,8 @@ require 'rspreedly'
 
 # setup a config with dummy data
 RSpreedly::Config.setup do |config|
-  config.api_key        = "47d379099856610f1eb24dff41d31f8739ee0e9c"
-  config.site_name      = "minutebase-test"
+  config.api_key        = "your-api-key-here"
+  config.site_name      = "you-site-name-here"
 end
 
 Spec::Runner.configure do |config|
