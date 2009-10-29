@@ -21,6 +21,7 @@ module RSpreedly
       rescue RSpreedly::Error::Base
         # gulp those errors down
         # TODO - set self.errors or something?
+        nil
       end      
     end
 

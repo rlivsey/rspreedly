@@ -6,7 +6,7 @@ Ruby library to access the Spreedly API (all of it).
 
 There are a few of these knocking about, but I couldn't find one particular to my needs:
 
- * Well covered with specs (aiming for 100%)
+ * Well covered with specs - currently 100% coverage
  * Covers the entire API, not just parts of it
  * Rubyish/ActiveRecord style access
 
