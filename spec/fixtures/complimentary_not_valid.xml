@@ -1,0 +1,3 @@
+Duration units must be either 'days' or 'months'
+Duration quantity can't be blank
+Duration quantity is not a number

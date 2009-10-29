@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subscriber>
+  <active-until type="datetime" nil="true"></active-until>
+  <billing-first-name nil="true"></billing-first-name>
+  <billing-last-name nil="true"></billing-last-name>
+  <created-at type="datetime">2009-10-28T22:27:38Z</created-at>
+  <customer-id>42</customer-id>
+  <eligible-for-free-trial type="boolean">true</eligible-for-free-trial>
+  <email>new@email.com</email>
+  <grace-until type="datetime" nil="true">2013-05-02T00:07:37Z</grace-until>
+  <lifetime-subscription type="boolean">false</lifetime-subscription>
+  <ready-to-renew type="boolean">false</ready-to-renew>
+  <screen-name>bob</screen-name>
+  <store-credit type="decimal">0.0</store-credit>
+  <store-credit-currency-code>USD</store-credit-currency-code>
+  <token>81ba778a5849f461ebc0d77e78b9221af2210c6b</token>
+  <updated-at type="datetime">2009-10-28T22:55:37Z</updated-at>
+  <recurring type="boolean">false</recurring>
+  <card-expires-before-next-auto-renew type="boolean">false</card-expires-before-next-auto-renew>
+  <subscription-plan-name></subscription-plan-name>
+  <active type="boolean">false</active>
+  <in_grace_period type="boolean"></in_grace_period>
+  <on-trial type="boolean">true</on-trial>
+  <feature-level type="string"></feature-level>
+</subscriber>

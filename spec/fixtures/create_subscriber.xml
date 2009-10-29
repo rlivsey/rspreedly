@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subscriber>
+  <active-until type="datetime" nil="true"></active-until>
+  <billing-first-name nil="true"></billing-first-name>
+  <billing-last-name nil="true"></billing-last-name>
+  <created-at type="datetime">2009-10-28T22:16:20Z</created-at>
+  <customer-id>8889</customer-id>
+  <eligible-for-free-trial type="boolean">true</eligible-for-free-trial>
+  <email nil="true"></email>
+  <grace-until type="datetime" nil="true"></grace-until>
+  <lifetime-subscription type="boolean">false</lifetime-subscription>
+  <ready-to-renew type="boolean">false</ready-to-renew>
+  <screen-name>freddy</screen-name>
+  <store-credit type="decimal">0.0</store-credit>
+  <store-credit-currency-code>USD</store-credit-currency-code>
+  <token>6af9994a57e420345897b1abb4c27a9db27fa4d0</token>
+  <updated-at type="datetime">2009-10-28T22:16:20Z</updated-at>
+  <recurring type="boolean">false</recurring>
+  <card-expires-before-next-auto-renew type="boolean">false</card-expires-before-next-auto-renew>
+  <subscription-plan-name></subscription-plan-name>
+  <active type="boolean">false</active>
+  <in_grace_period type="boolean"></in_grace_period>
+  <on-trial type="boolean">false</on-trial>
+  <feature-level type="string"></feature-level>
+</subscriber>

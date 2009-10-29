@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subscription-plans type="array">
+  <subscription-plan>
+    <amount type="decimal">19.0</amount>
+    <charge-after-first-period type="boolean">true</charge-after-first-period>
+    <charge-later-duration-quantity type="integer">1</charge-later-duration-quantity>
+    <charge-later-duration-units>months</charge-later-duration-units>
+    <created-at type="datetime">2009-10-26T00:28:41Z</created-at>
+    <currency-code>USD</currency-code>
+    <description></description>
+    <duration-quantity type="integer">1</duration-quantity>
+    <duration-units>months</duration-units>
+    <enabled type="boolean">true</enabled>
+    <feature-level>personal</feature-level>
+    <force-recurring type="boolean">true</force-recurring>
+    <id type="integer">42</id>
+    <name>Personal</name>
+    <needs-to-be-renewed type="boolean">true</needs-to-be-renewed>
+    <plan-type>regular</plan-type>
+    <return-url>http://example.com</return-url>
+    <updated-at type="datetime">2009-10-26T00:28:41Z</updated-at>
+    <terms type="string">1 month</terms>
+    <price type="decimal">19.0</price>
+  </subscription-plan>
+  <subscription-plan>
+    <amount type="decimal">49.0</amount>
+    <charge-after-first-period type="boolean">true</charge-after-first-period>
+    <charge-later-duration-quantity type="integer">1</charge-later-duration-quantity>
+    <charge-later-duration-units>months</charge-later-duration-units>
+    <created-at type="datetime">2009-10-26T00:29:07Z</created-at>
+    <currency-code>USD</currency-code>
+    <description></description>
+    <duration-quantity type="integer">1</duration-quantity>
+    <duration-units>months</duration-units>
+    <enabled type="boolean">true</enabled>
+    <feature-level>team</feature-level>
+    <force-recurring type="boolean">true</force-recurring>
+    <id type="integer">43</id>
+    <name>Team</name>
+    <needs-to-be-renewed type="boolean">true</needs-to-be-renewed>
+    <plan-type>regular</plan-type>
+    <return-url>http://example.com</return-url>
+    <updated-at type="datetime">2009-10-26T00:29:07Z</updated-at>
+    <terms type="string">1 month</terms>
+    <price type="decimal">49.0</price>
+  </subscription-plan>
+  <subscription-plan>
+    <amount type="decimal">99.0</amount>
+    <charge-after-first-period type="boolean">true</charge-after-first-period>
+    <charge-later-duration-quantity type="integer">1</charge-later-duration-quantity>
+    <charge-later-duration-units>months</charge-later-duration-units>
+    <created-at type="datetime">2009-10-26T00:29:39Z</created-at>
+    <currency-code>USD</currency-code>
+    <description></description>
+    <duration-quantity type="integer">1</duration-quantity>
+    <duration-units>months</duration-units>
+    <enabled type="boolean">true</enabled>
+    <feature-level>corporate</feature-level>
+    <force-recurring type="boolean">true</force-recurring>
+    <id type="integer">44</id>
+    <name>Corporate</name>
+    <needs-to-be-renewed type="boolean">true</needs-to-be-renewed>
+    <plan-type>regular</plan-type>
+    <return-url>http://example.com</return-url>
+    <updated-at type="datetime">2009-10-26T00:29:39Z</updated-at>
+    <terms type="string">1 month</terms>
+    <price type="decimal">99.0</price>
+  </subscription-plan>
+  <subscription-plan>
+    <amount type="decimal">0.0</amount>
+    <charge-after-first-period type="boolean">false</charge-after-first-period>
+    <charge-later-duration-quantity type="integer" nil="true"></charge-later-duration-quantity>
+    <charge-later-duration-units nil="true"></charge-later-duration-units>
+    <created-at type="datetime">2009-10-29T00:31:15Z</created-at>
+    <currency-code>USD</currency-code>
+    <description></description>
+    <duration-quantity type="integer">0</duration-quantity>
+    <duration-units>days</duration-units>
+    <enabled type="boolean">true</enabled>
+    <feature-level>free</feature-level>
+    <force-recurring type="boolean">false</force-recurring>
+    <id type="integer">45</id>
+    <name>Free Trial</name>
+    <needs-to-be-renewed type="boolean">false</needs-to-be-renewed>
+    <plan-type>free_trial</plan-type>
+    <return-url>http://example.com</return-url>
+    <updated-at type="datetime">2009-10-29T00:31:15Z</updated-at>
+    <terms type="string">Lifetime</terms>
+    <price type="decimal">0.0</price>
+  </subscription-plan>
+</subscription-plans>

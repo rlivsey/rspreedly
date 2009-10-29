@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice>
+  <closed type="boolean">true</closed>
+  <created-at type="datetime">2009-10-29T02:34:14Z</created-at>
+  <token>5b1f186651dd988865c6573921ec87fa4bec23b8</token>
+  <updated-at type="datetime">2009-10-29T02:42:47Z</updated-at>
+  <price>$0.00</price>
+  <amount type="decimal">0.0</amount>
+  <currency-code>USD</currency-code>
+  <subscriber>
+    <active-until type="datetime">2009-11-29T02:42:47Z</active-until>
+    <billing-first-name>Joe</billing-first-name>
+    <billing-last-name>Bob</billing-last-name>
+    <created-at type="datetime">2009-10-29T02:34:14Z</created-at>
+    <customer-id>400</customer-id>
+    <eligible-for-free-trial type="boolean">false</eligible-for-free-trial>
+    <email>test@example.com</email>
+    <grace-until type="datetime">2009-12-02T02:42:47Z</grace-until>
+    <lifetime-subscription type="boolean">false</lifetime-subscription>
+    <ready-to-renew type="boolean">false</ready-to-renew>
+    <screen-name>bob</screen-name>
+    <store-credit type="decimal">0.0</store-credit>
+    <store-credit-currency-code>USD</store-credit-currency-code>
+    <token>c385a23a76d85400371d82cb24f383759cb28721</token>
+    <updated-at type="datetime">2009-10-29T02:42:47Z</updated-at>
+    <recurring type="boolean">true</recurring>
+    <card-expires-before-next-auto-renew type="boolean">false</card-expires-before-next-auto-renew>
+    <subscription-plan-name>Personal</subscription-plan-name>
+    <active type="boolean">true</active>
+    <in_grace_period type="boolean">false</in_grace_period>
+    <on-trial type="boolean">false</on-trial>
+    <feature-level type="string">personal</feature-level>
+  </subscriber>
+  <line-items type="array">
+    <line-item>
+      <amount type="decimal">0.0</amount>
+      <currency-code>USD</currency-code>
+      <description>Initial 1 month</description>
+      <notes>Subsequent Time Periods are $19.00 every 1 month</notes>
+      <price>$0.00</price>
+    </line-item>
+  </line-items>
+</invoice>

@@ -1,6 +1,77 @@
-= rspreedly
+= RSpreedly
 
-Description goes here.
+Ruby library to access the Spreedly API (all of it).
+
+== Why another one?
+
+There are a few of these knocking about, but I couldn't find one particular to my needs:
+
+ * Well covered with specs (aiming for 100%)
+ * Covers the entire API, not just parts of it
+ * Rubyish/ActiveRecord style access
+
+== Usage
+
+Configure your API key and site name for your account:
+
+    RSpreedly::Config.setup do |config|
+      config.api_key        = "your-api-key"
+      config.site_name      = "your-site-name"
+    end
+
+List subscribers
+
+    RSpreedly::Subscriber.find(:all).each do |subscriber|
+      # do something
+    end
+
+CRUD access to subscribers
+
+    sub = RSpreedly::Subscriber.new(:customer_id => 42, :email => "somewhere@example.com")
+    sub.token => nil
+    sub.save 
+    sub.token => "6af9994a57e420345897b1abb4c27a9db27fa4d0"
+        
+    sub = RSpreedly::Subscriber.find(42)
+    sub.email = "new-email@example.com"
+    sub.save
+    
+    sub = RSpreedly::Subscriber.find(69)
+    sub.destroy
+
+Comp subscriptions
+
+    comp = RSpreedly::ComplimentarySubscription.new(:duration_quantity => 3, :duration_units => "months", :feature_level => "Pro")      
+    sub = RSpreedly::Subscriber.find(69)
+    sub.comp_subscription(comp)
+
+View all plans
+
+    plans = RSpreedly::SubscriptionPlan.find(:all)
+    
+Raise an invoice, and pay it
+
+    invoice = Invoice.new(:subscription_plan_id => 5, :subscriber => sub)
+    invoice.save
+    
+    payment = RSpreedly::PaymentMethod::CreditCard(:card_type => 'visa', :number => '123456', ...)
+    invoice.pay(payment)
+
+See the specs and API docs at Spreedly for more details and the rest of the things it can do.
+
+https://www.spreedly.com/manual/integration-reference/url-reference/
+
+== Todo
+
+ * Better specs for data we send to Spreedly.
+ * Better docs.
+
+== Thanks
+
+I studied the other Spreedly APIs and there may well be a line or three this library has in common with:
+
+ * http://github.com/terralien/spreedly-gem
+ * http://github.com/erbmicha/spreedly/
 
 == Copyright
 
