@@ -1,8 +1,5 @@
 require 'rubygems'
 require 'spec'
-require 'net-http-spy'                                                                                                                                                                                                                                                     
-
-Net::HTTP.http_logger_options = {:verbose => true}
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
