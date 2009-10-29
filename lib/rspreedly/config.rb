@@ -1,3 +1,4 @@
+require 'pp'
 module RSpreedly
   module Config    
     class << self
@@ -11,8 +12,8 @@ module RSpreedly
         {
           :logger     => defined?(RAILS_DEFAULT_LOGGER) ? RAILS_DEFAULT_LOGGER : Logger.new(STDOUT),
           :debug      => false,
-          :site_name  => nil,   # your site name
-          :key        => nil    # your API key
+          :site_name  => "your-site-name",
+          :api_key    => "your-api-key"   
         }
       end
       

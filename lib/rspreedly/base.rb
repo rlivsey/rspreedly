@@ -6,7 +6,7 @@ module RSpreedly
     base_uri "https://spreedly.com/api/v4"
 
     def self.api_request(type, path, options={})
-      path = "#{RSpreedly::Config.site_name}#{path}"
+      path = "/#{::RSpreedly::Config.site_name}#{path}"
       options.merge!({
         :basic_auth => {:username => RSpreedly::Config.api_key, :password => 'X'},
         :headers    => {"Content-Type" => 'application/xml'}
@@ -19,6 +19,8 @@ module RSpreedly
       message   = "#{response.code}: #{response.body}"
       
       case response.code.to_i
+      when 401
+        raise(RSpreedly::Error::AccessDenied.new, message)        
       when 403
         raise(RSpreedly::Error::Forbidden.new, message)
       when 422

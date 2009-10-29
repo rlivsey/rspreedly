@@ -1,18 +1,14 @@
 require 'rubygems'
 require 'spec'
-
+require 'net-http-spy'
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'rspreedly'
 
-# setup a config with dummy data
-RSpreedly::Config.setup do |config|
-  config.api_key        = "your-api-key-here"
-  config.site_name      = "you-site-name-here"
-end
-
 Spec::Runner.configure do |config|
-  
+  config.before(:each) do
+    RSpreedly::Config.reset
+  end
 end
 
 def load_fixture(file)
