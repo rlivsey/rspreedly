@@ -112,6 +112,13 @@ describe RSpreedly::Invoice do
       }.should raise_error(RSpreedly::Error::NotFound)      
     end
     
+    it "should raise GatewayTimeout if the payment gateway times out" do
+      stub_http_with_code(504)    
+      lambda{
+        @invoice.pay(@payment)
+      }.should raise_error(RSpreedly::Error::GatewayTimeout)
+    end
+    
     it "should raise BadRequest if the payment method is invalid" do
       stub_http_with_fixture("payment_invalid.xml", 422)      
       lambda{

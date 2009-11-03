@@ -27,6 +27,8 @@ module RSpreedly
         raise(RSpreedly::Error::BadRequest.new, message)
       when 404
         raise(RSpreedly::Error::NotFound.new, message)        
+      when 504
+        raise(RSpreedly::Error::GatewayTimeout.new, message)                
       end      
 
       response
