@@ -80,7 +80,7 @@ describe RSpreedly::Invoice do
   
   
   describe "#pay" do
-    
+
     before(:each) do
       @invoice = RSpreedly::Invoice.new(:token => "5b1f186651dd988865c6573921ec87fa4bec23b8")
       @payment = RSpreedly::PaymentMethod::CreditCard.new(:number     => "4222222222222", 
@@ -97,39 +97,64 @@ describe RSpreedly::Invoice do
       @invoice.pay(@payment).should be_true
     end   
       
+    it "should return nil if not successful" do
+      stub_http_with_fixture("payment_not_found.xml", 404)    
+      @invoice.pay(@payment).should be_nil
+    end
+    
+  end
+  
+  describe "#pay!" do
+    
+    before(:each) do
+      @invoice = RSpreedly::Invoice.new(:token => "5b1f186651dd988865c6573921ec87fa4bec23b8")
+      @payment = RSpreedly::PaymentMethod::CreditCard.new(:number     => "4222222222222", 
+                                                          :card_type  => "visa", 
+                                                          :verification_value => "234", 
+                                                          :month      => 1, 
+                                                          :year       => 2011, 
+                                                          :first_name => "Joe", 
+                                                          :last_name  => "Bob")
+    end 
+   
+    it "should return true if successful" do
+      stub_http_with_fixture("payment_success.xml", 200)    
+      @invoice.pay!(@payment).should be_true
+    end   
+      
     it "should update the Invoice if successful" do
       stub_http_with_fixture("payment_success.xml", 200)    
       
       lambda{
-        @invoice.pay(@payment)
+        @invoice.pay!(@payment)
       }.should change(@invoice, :closed).to(true)
     end
     
     it "should raise NotFound if the invoice doesn't exist" do
       stub_http_with_fixture("payment_not_found.xml", 404)    
       lambda{
-        @invoice.pay(@payment)
+        @invoice.pay!(@payment)
       }.should raise_error(RSpreedly::Error::NotFound)      
     end
     
     it "should raise GatewayTimeout if the payment gateway times out" do
       stub_http_with_code(504)    
       lambda{
-        @invoice.pay(@payment)
+        @invoice.pay!(@payment)
       }.should raise_error(RSpreedly::Error::GatewayTimeout)
     end
     
     it "should raise BadRequest if the payment method is invalid" do
       stub_http_with_fixture("payment_invalid.xml", 422)      
       lambda{
-        @invoice.pay(@payment)
+        @invoice.pay!(@payment)
       }.should raise_error(RSpreedly::Error::BadRequest)
     end
       
       it "should raise Forbidden if the invoice is already paid" do
         stub_http_with_fixture("payment_already_paid.xml", 403)            
         lambda{
-          @invoice.pay(@payment)
+          @invoice.pay!(@payment)
         }.should raise_error(RSpreedly::Error::Forbidden)      
       end    
   end

@@ -19,8 +19,6 @@ module RSpreedly
       begin
         create!
       rescue RSpreedly::Error::Base
-        # gulp those errors down
-        # TODO - set self.errors or something?
         nil
       end      
     end
@@ -54,9 +52,18 @@ module RSpreedly
     # Pay an Invoice (more)
     # PUT /api/v4/[short site name]/invoices/[invoice token]/pay.xml
     def pay(payment)
+      begin
+        pay!(payment)
+      rescue RSpreedly::Error::Base
+        nil
+      end
+    end
+    
+    def pay!(payment)
       result = api_request(:put, "/invoices/#{self.token}/pay.xml", :body => payment.to_xml(:outer => 'payment'))
       self.attributes = result["invoice"]
-      true
+      true      
     end
+    
   end
 end
