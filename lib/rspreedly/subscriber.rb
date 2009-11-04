@@ -154,6 +154,24 @@ module RSpreedly
       self.attributes = result["subscriber"]
       true            
     end
-
+    
+    def to_xml(opts={})
+      
+      # the api doesn't let us send these things
+      # so let's strip them out of the XML
+      exclude = [
+        :active,       :active_until,               :card_expires_before_next_auto_renew, 
+        :created_at,   :eligible_for_free_trial,    :feature_level, 
+        :grace_until,  :in_grace_period,            :lifetime_subscription, 
+        :on_trial,     :ready_to_renew,             :recurring, 
+        :store_credit, :store_credit_currency_code, :subscription_plan_name,   
+        :token,        :updated_at
+      ]
+      
+      opts[:exclude] ||= []
+      opts[:exclude] |= exclude
+      
+      super(opts)      
+    end
   end
 end

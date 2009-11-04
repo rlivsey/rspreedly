@@ -39,7 +39,46 @@ describe RSpreedly::Subscriber do
       RSpreedly::Subscriber.destroy_all.should be_true
     end    
   end
-
+  
+  describe "#to_xml" do
+    
+    before(:each) do
+      # use the XML to build a subscriber
+      stub_http_with_fixture("subscriber.xml", 200)
+      @subscriber = RSpreedly::Subscriber.find(42)
+    end
+    
+    it "should strip fields the API can't handle" do      
+      fields = [
+        :active,       :active_until,               :card_expires_before_next_auto_renew, 
+        :created_at,   :eligible_for_free_trial,    :feature_level, 
+        :grace_until,  :in_grace_period,            :lifetime_subscription, 
+        :on_trial,     :ready_to_renew,             :recurring, 
+        :store_credit, :store_credit_currency_code, :subscription_plan_name,                
+        :token,        :updated_at
+      ]
+      
+      xml = @subscriber.to_xml
+      fields.each do |field|
+        xml.should_not =~ /<#{field}>/
+      end      
+    end
+    
+    it "should not strip fields the API can handle" do
+      fields = [
+        :billing_first_name, 
+        :billing_last_name, 
+        :customer_id, :email, 
+        :screen_name
+      ]
+      
+      xml = @subscriber.to_xml
+      fields.each do |field|
+        xml.should =~ /<#{field}>/
+      end      
+    end
+  end
+  
   describe "#new_record?" do
     before(:each) do
       @subscriber = RSpreedly::Subscriber.new
