@@ -67,6 +67,7 @@ module RSpreedly
     # rather eew at the moment and hand made XML is not nice
     def to_xml(opts={})
       exclude = opts[:exclude] || []
+      exclude << :errors
       
       tag     = opts[:tag] || RSpreedly.underscore(self.class.to_s)
       inner   = opts[:inner]
