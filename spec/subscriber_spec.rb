@@ -71,6 +71,23 @@ describe RSpreedly::Subscriber do
       @subscriber.save      
     end
   end
+  
+  describe "#save!" do
+    before(:each) do
+      @subscriber = RSpreedly::Subscriber.new
+    end    
+    
+    it "should call #create! for a non existing subscriber" do
+      @subscriber.should_receive(:create!)      
+      @subscriber.save!
+    end
+    
+    it "should call update! for an existing subscriber" do
+      @subscriber.token = "something"
+      @subscriber.should_receive(:update!)
+      @subscriber.save!     
+    end
+  end  
 
   describe "#create!" do
     it "should return true if successful" do

@@ -68,6 +68,10 @@ module RSpreedly
       self.new_record? ? self.create : self.update
     end
 
+    def save!
+      self.new_record? ? self.create! : self.update!
+    end
+
     # Create a subscriber (more)
     # POST /api/v4/[short site name]/subscribers.xml    
     def create!
