@@ -5,6 +5,8 @@ module RSpreedly
     format :xml
     base_uri "https://spreedly.com/api/v4"
 
+    attr_reader :errors
+
     def self.api_request(type, path, options={})
       path = "/#{::RSpreedly::Config.site_name}#{path}"
       options.merge!({
@@ -20,21 +22,22 @@ module RSpreedly
       
       case response.code.to_i
       when 401
-        raise(RSpreedly::Error::AccessDenied.new, message)        
+        raise(RSpreedly::Error::AccessDenied.new(response), message)
       when 403
-        raise(RSpreedly::Error::Forbidden.new, message)
+        raise(RSpreedly::Error::Forbidden.new(response), message)
       when 422
-        raise(RSpreedly::Error::BadRequest.new, message)
+        raise(RSpreedly::Error::BadRequest.new(response), message)
       when 404
-        raise(RSpreedly::Error::NotFound.new, message)        
+        raise(RSpreedly::Error::NotFound.new(response), message)
       when 504
-        raise(RSpreedly::Error::GatewayTimeout.new, message)                
+        raise(RSpreedly::Error::GatewayTimeout.new(response), message)
       end      
 
       response
     end
 
     def initialize(attrs={})
+      @errors = []
       self.attributes = attrs
     end
     
@@ -45,7 +48,19 @@ module RSpreedly
     end
     
     def api_request(type, path, options={})
-      self.class.api_request(type, path, options)
+      @errors = []
+      begin
+        self.class.api_request(type, path, options)
+      rescue RSpreedly::Error::Base => e
+        if e.response.is_a?(Hash)
+          if e.response.has_key?("errors")
+            @errors = [*e.response["errors"]["error"]]
+          else
+            @errors = [e.response.body]
+          end      
+        end
+        raise
+      end
     end
 
     # TODO - do this nicer

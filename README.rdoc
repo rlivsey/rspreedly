@@ -69,6 +69,12 @@ Raise an invoice, and pay it
     payment = RSpreedly::PaymentMethod::CreditCard(:card_type => 'visa', :number => '123456', ...)
     invoice.pay(payment)
 
+Error messages
+  
+    invoice = RSpreedly::Invoice.new
+    invoice.save => false
+    invoice.errors => ["You must specify both the subscription plan id and subscriber information."]
+
 See the specs and API docs at Spreedly for more details and the rest of the things it can do.
 
 https://www.spreedly.com/manual/integration-reference/url-reference/
