@@ -17,20 +17,23 @@ module RSpreedly
     end
 
     def self.do_request(type, path, options)
-      response  = self.send(type.to_s, path, options)      
-      message   = "#{response.code}: #{response.body}"
+      begin
+        response = self.send(type.to_s, path, options)      
+      rescue SocketError
+        raise(RSpreedly::Error::ConnectionFailed.new, "Failed to connect to payment gateway.")
+      end
       
       case response.code.to_i
       when 401
-        raise(RSpreedly::Error::AccessDenied.new(response), message)
+        raise(RSpreedly::Error::AccessDenied.new(response), response.body)
       when 403
-        raise(RSpreedly::Error::Forbidden.new(response), message)
+        raise(RSpreedly::Error::Forbidden.new(response), response.body)
       when 422
-        raise(RSpreedly::Error::BadRequest.new(response), message)
+        raise(RSpreedly::Error::BadRequest.new(response), response.body)
       when 404
-        raise(RSpreedly::Error::NotFound.new(response), message)
+        raise(RSpreedly::Error::NotFound.new(response), response.body)
       when 504
-        raise(RSpreedly::Error::GatewayTimeout.new(response), message)
+        raise(RSpreedly::Error::GatewayTimeout.new(response), response.body)
       end      
 
       response
@@ -58,6 +61,8 @@ module RSpreedly
           else
             @errors = [e.response.body]
           end      
+        else
+          @errors = [e.message]
         end
         raise
       end
