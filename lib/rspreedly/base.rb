@@ -8,9 +8,12 @@ module RSpreedly
     attr_reader :errors
 
     def self.api_request(type, path, options={})
-      path = "/#{::RSpreedly::Config.site_name}#{path}"
+      site_name = RSpreedly::Config.site_name.class == Array ? RSpreedly::Config.site_name.first : RSpreedly::Config.site_name
+      api_key = RSpreedly::Config.api_key.class == Array ?  RSpreedly::Config.api_key.first : RSpreedly::Config.api_key
+      path = "/#{site_name}#{path}"
+
       options.merge!({
-        :basic_auth => {:username => RSpreedly::Config.api_key, :password => 'X'},
+        :basic_auth => {:username => api_key, :password => 'X'},
         :headers    => {"Content-Type" => 'application/xml'}
       })
       self.do_request(type, path, options)
@@ -79,7 +82,7 @@ module RSpreedly
       xml << "<#{tag}>" unless no_tag
       xml << "<#{inner}>" if inner
       self.instance_variables.each do |var|
-        name = var.gsub('@', '')
+        name = var.to_s.gsub('@', '')
         next if exclude.include?(name.to_sym)
         value = self.instance_variable_get(var)
         if value.respond_to?(:to_xml)
