@@ -63,10 +63,10 @@ View all plans
     
 Raise an invoice, and pay it
 
-    invoice = Invoice.new(:subscription_plan_id => 5, :subscriber => sub)
+    invoice = RSpreedly::Invoice.new(:subscription_plan_id => 5, :subscriber => sub)
     invoice.save
     
-    payment = RSpreedly::PaymentMethod::CreditCard(:card_type => 'visa', :number => '123456', ...)
+    payment = RSpreedly::PaymentMethod::CreditCard.new(:card_type => 'visa', :number => '123456', ...)
     invoice.pay(payment)
 
 Error messages
