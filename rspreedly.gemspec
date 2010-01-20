@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/rspreedly/config.rb",
      "lib/rspreedly/error.rb",
      "lib/rspreedly/invoice.rb",
+     "lib/rspreedly/lifetime_complimentary_subscription.rb",
      "lib/rspreedly/line_item.rb",
      "lib/rspreedly/payment_method.rb",
      "lib/rspreedly/subscriber.rb",
@@ -45,6 +46,7 @@ Gem::Specification.new do |s|
      "spec/fixtures/error_string.txt",
      "spec/fixtures/errors.xml",
      "spec/fixtures/existing_subscriber.xml",
+     "spec/fixtures/feature_level_blank.xml",
      "spec/fixtures/free_plan_not_elligable.xml",
      "spec/fixtures/free_plan_not_free.xml",
      "spec/fixtures/free_plan_not_set.xml",
@@ -53,6 +55,7 @@ Gem::Specification.new do |s|
      "spec/fixtures/invalid_update.xml",
      "spec/fixtures/invoice_created.xml",
      "spec/fixtures/invoice_invalid.xml",
+     "spec/fixtures/lifetime_subscription_success.xml",
      "spec/fixtures/no_plans.xml",
      "spec/fixtures/no_subscribers.xml",
      "spec/fixtures/payment_already_paid.xml",
@@ -84,6 +87,7 @@ Gem::Specification.new do |s|
      "spec/subscription_plan_spec.rb"
   ]
   s.add_dependency('httparty', '>= 0.5.0')
+
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
