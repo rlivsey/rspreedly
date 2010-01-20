@@ -49,7 +49,7 @@ module RSpreedly
     
     def attributes=(attrs)
       attrs.each do |k, v|
-        self.send("#{k}=", v)
+        self.send(:"#{k}=", v) if self.respond_to?(:"#{k}=")
       end      
     end
     

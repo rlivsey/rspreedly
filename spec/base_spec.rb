@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-class TestAPI < RSpreedly::Base; end
+class TestAPI < RSpreedly::Base
+  attr_accessor :something
+end
 
 describe RSpreedly::Base do
 
@@ -10,6 +12,23 @@ describe RSpreedly::Base do
       lambda{
         RSpreedly::Base.api_request(:put, '/')
       }.should raise_error(RSpreedly::Error::AccessDenied)
+    end
+  end
+    
+  describe "attributes=" do
+    before(:each) do
+      @api = TestAPI.new
+    end
+
+    it "should assign attributes if they exist" do
+      @api.attributes = {:something => "test"}
+      @api.something.should == "test"
+    end
+    
+    it "should not fail if an attribute does not exist" do
+      lambda{
+        @api.attributes = {:foo => true}
+      }.should_not raise_error
     end
   end
     
