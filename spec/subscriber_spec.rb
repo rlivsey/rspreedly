@@ -495,4 +495,44 @@ describe RSpreedly::Subscriber do
       }.should raise_error(RSpreedly::Error::NotFound)      
     end
   end
+  
+  describe "#grant_lifetime_subscription" do
+    
+    before(:each) do
+      @subscriber = RSpreedly::Subscriber.new(:customer_id => 42)
+    end    
+    
+    it "should return true if successful" do
+      stub_http_with_fixture("lifetime_subscription_success.xml", 200)     
+      @subscriber.grant_lifetime_subscription("Something").should be_true
+    end    
+    
+    it "should update the subscriber's lifetime_subscription if successful" do
+      stub_http_with_fixture("lifetime_subscription_success.xml", 200)           
+      lambda{
+        @subscriber.grant_lifetime_subscription("Something")
+      }.should change(@subscriber, :lifetime_subscription).to(true)
+    end
+    
+    it "should update the subscriber's feature_level if successful" do
+      stub_http_with_fixture("lifetime_subscription_success.xml", 200)           
+      lambda{
+        @subscriber.grant_lifetime_subscription("Something")
+      }.should change(@subscriber, :feature_level).to("Something")
+    end    
+    
+    it "should raise NotFound if the subscriber doesn't exist" do
+      stub_http_with_fixture("subscriber_not_found.xml", 404)    
+      lambda{
+        @subscriber.grant_lifetime_subscription("Something")
+      }.should raise_error(RSpreedly::Error::NotFound)      
+    end
+    
+    it "should raise BadRequest if the feature level is blank" do
+      stub_http_with_fixture("feature_level_blank.xml", 422)    
+      lambda{
+        @subscriber.grant_lifetime_subscription("Something")
+      }.should raise_error(RSpreedly::Error::BadRequest)            
+    end
+  end
 end

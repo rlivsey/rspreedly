@@ -155,6 +155,13 @@ module RSpreedly
       true            
     end
     
+    def grant_lifetime_subscription(feature_level)
+      subscription = LifetimeComplimentarySubscription.new(:feature_level => feature_level)
+      result = api_request(:post, "/subscribers/#{self.customer_id}/lifetime_complimentary_subscriptions.xml", :body => subscription.to_xml)
+      self.attributes = result["subscriber"]
+      true
+    end
+    
     def to_xml(opts={})
       
       # the api doesn't let us send these things
