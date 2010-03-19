@@ -36,5 +36,12 @@ module RSpreedly
       return [] unless response.has_key?("subscription_plans")
       response["subscription_plans"].collect{|data| SubscriptionPlan.new(data)}
     end
+    
+    # Get a list of all active subscription plans (more)
+    # GET /api/v4/[short site name]/subscription_plans.xml
+    def self.active
+      all.reject { |plan| !plan.enabled }
+    end
+    
   end
 end

@@ -54,7 +54,7 @@
     <description></description>
     <duration-quantity type="integer">1</duration-quantity>
     <duration-units>months</duration-units>
-    <enabled type="boolean">true</enabled>
+    <enabled type="boolean">false</enabled>
     <feature-level>corporate</feature-level>
     <force-recurring type="boolean">true</force-recurring>
     <id type="integer">44</id>
@@ -76,7 +76,7 @@
     <description></description>
     <duration-quantity type="integer">0</duration-quantity>
     <duration-units>days</duration-units>
-    <enabled type="boolean">true</enabled>
+    <enabled type="boolean">false</enabled>
     <feature-level>free</feature-level>
     <force-recurring type="boolean">false</force-recurring>
     <id type="integer">45</id>
