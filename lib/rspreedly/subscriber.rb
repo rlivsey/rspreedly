@@ -130,7 +130,16 @@ module RSpreedly
     def comp_time_extension(extension)
       result = api_request(:post, "/subscribers/#{self.customer_id}/complimentary_time_extensions.xml", :body => extension.to_xml)
       self.attributes = result["subscriber"]
-      true      
+      true
+    end
+
+    # Give a subscriber a credit (or reduce credit by supplying a negative value (more)
+    # POST /api/v4[short site name]/subscribers/[subscriber id]/credit.xml
+    def credit(amount)
+      credit = Credit.new(:amount => amount)
+      result = api_request(:post, "/subscribers/#{self.customer_id}/credit.xml", :body => credit.to_xml)
+      self.store_credit = (self.store_credit || 0) + amount
+      true
     end
 
     # Programatically Stopping Auto Renew of a Subscriber (more)

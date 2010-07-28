@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+  <error>Amount is invalid. The total store credit for a subscriber must be greater than or equal to 0.</error>
+</errors>
