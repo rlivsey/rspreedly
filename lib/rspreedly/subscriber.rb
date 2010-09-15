@@ -19,6 +19,7 @@ module RSpreedly
                   :on_trial,
                   :payment_method,
                   :ready_to_renew,
+                  :ready_to_renew_since,
                   :recurring,
                   :screen_name,
                   :store_credit,
