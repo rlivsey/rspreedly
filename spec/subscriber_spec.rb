@@ -394,7 +394,48 @@ describe RSpreedly::Subscriber do
       stub_http_with_fixture("complimentary_failed_inactive.xml", 403)            
       lambda{
         @subscriber.comp_time_extension(@subscription)
-      }.should raise_error(RSpreedly::Error::Forbidden)      
+      }.should raise_error(RSpreedly::Error::Forbidden)
+    end
+  end
+
+  describe "#credit" do
+    before(:each) do
+      @subscriber = RSpreedly::Subscriber.new(:customer_id => 42, :feature_level => "Lowly")
+      @credit_amount = 5
+    end
+
+    it "should return true if successful" do
+      stub_http_with_fixture("credit_success.xml", 201)
+      @subscriber.credit(@credit_amount).should be_true
+      @subscriber.store_credit.should == @credit_amount
+    end
+
+    it "should raise NotFound if the subscriber doesn't exist" do
+      stub_http_with_fixture("subscriber_not_found.xml", 404)
+      lambda{
+        @subscriber.credit(@credit_amount)
+      }.should raise_error(RSpreedly::Error::NotFound)
+    end
+
+    it "should raise BadRequest if validation fails on the subscription" do
+      stub_http_with_fixture("credit_not_valid.xml", 422)
+      lambda{
+        @subscriber.credit(@credit_amount)
+      }.should raise_error(RSpreedly::Error::BadRequest)
+    end
+
+    it "should increment store_credit" do
+      stub_http_with_fixture("credit_success.xml", 201)
+      @subscriber.store_credit = 5
+      @subscriber.credit(5).should be_true
+      @subscriber.store_credit.should == 10
+    end
+
+    it "should decrement store_credit" do
+      stub_http_with_fixture("credit_success.xml", 201)
+      @subscriber.store_credit = 5
+      @subscriber.credit(-5).should be_true
+      @subscriber.store_credit.should == 0
     end
   end
  
