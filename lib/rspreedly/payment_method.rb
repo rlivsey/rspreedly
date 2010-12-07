@@ -7,7 +7,9 @@ module RSpreedly
                     :phone_number
     end
     class OnFile < Base
-      attr_accessor :dummy
+       def to_xml(opts=nil)
+         "<payment> <account-type>on-file</account-type> </payment>"
+       end
     end
   end
 end
