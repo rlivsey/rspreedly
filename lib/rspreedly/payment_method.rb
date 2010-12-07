@@ -6,5 +6,8 @@ module RSpreedly
                     :address1, :address2, :city, :state, :zip, :country,
                     :phone_number
     end
+    class OnFile < Base
+      attr_accessor :dummy
+    end
   end
 end
