@@ -182,7 +182,7 @@ module RSpreedly
         :grace_until,  :in_grace_period,            :lifetime_subscription, 
         :on_trial,     :ready_to_renew,             :recurring, 
         :store_credit, :store_credit_currency_code, :subscription_plan_name,   
-        :token,        :updated_at
+        :token,        :updated_at,                 :ready_to_renew_since
       ]
       
       opts[:exclude] ||= []
