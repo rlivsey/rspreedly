@@ -13,6 +13,7 @@ require 'rspreedly/payment_method'
 require 'rspreedly/complimentary_subscription'
 require 'rspreedly/complimentary_time_extension'
 require 'rspreedly/lifetime_complimentary_subscription'
+require 'rspreedly/transaction'
 
 module RSpreedly
 

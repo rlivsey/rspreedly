@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transactions type="array">
+  <transaction>
+    <amount type="decimal">24.0</amount>
+    <created-at type="datetime">2009-09-26T03:06:30Z</created-at>
+    <currency-code>USD</currency-code>
+    <description>Subscription</description>
+    <detail-type>Subscription</detail-type>
+    <expires-at type="datetime">2009-12-26T04:06:30Z</expires-at>
+    <id type="integer">20</id>
+    <invoice-id type="integer">64</invoice-id>
+    <start-time type="datetime">2009-09-26T03:06:30Z</start-time>
+    <terms>3 months</terms>
+    <updated-at type="datetime">2009-09-26T03:06:30Z</updated-at>
+    <price>$24.00</price>
+    <subscriber-customer-id>39053</subscriber-customer-id>
+    <detail>
+      <payment-method>visa</payment-method>
+      <recurring type="boolean">false</recurring>
+      <feature-level type="string">example</feature-level>
+    </detail>
+  </transaction>
+  <transaction>
+    <amount type="decimal">24.0</amount>
+    <created-at type="datetime">2009-09-26T03:06:30Z</created-at>
+    <currency-code>USD</currency-code>
+    <description>Subscription</description>
+    <detail-type>Subscription</detail-type>
+    <expires-at type="datetime">2009-12-26T04:06:30Z</expires-at>
+    <id type="integer">20</id>
+    <invoice-id type="integer">64</invoice-id>
+    <start-time type="datetime">2009-09-26T03:06:30Z</start-time>
+    <terms>3 months</terms>
+    <updated-at type="datetime">2009-09-26T03:06:30Z</updated-at>
+    <price>$24.00</price>
+    <subscriber-customer-id>39053</subscriber-customer-id>
+    <detail>
+      <payment-method>visa</payment-method>
+      <recurring type="boolean">false</recurring>
+      <feature-level type="string">example</feature-level>
+    </detail>
+  </transaction>
+  <transaction>
+    <amount type="decimal">24.0</amount>
+    <created-at type="datetime">2009-09-26T03:06:30Z</created-at>
+    <currency-code>USD</currency-code>
+    <description>Subscription</description>
+    <detail-type>Subscription</detail-type>
+    <expires-at type="datetime">2009-12-26T04:06:30Z</expires-at>
+    <id type="integer">20</id>
+    <invoice-id type="integer">64</invoice-id>
+    <start-time type="datetime">2009-09-26T03:06:30Z</start-time>
+    <terms>3 months</terms>
+    <updated-at type="datetime">2009-09-26T03:06:30Z</updated-at>
+    <price>$24.00</price>
+    <subscriber-customer-id>39053</subscriber-customer-id>
+    <detail>
+      <payment-method>visa</payment-method>
+      <recurring type="boolean">false</recurring>
+      <feature-level type="string">example</feature-level>
+    </detail>
+  </transaction>
+</transactions>
