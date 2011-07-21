@@ -22,4 +22,139 @@
   <in_grace_period type="boolean"></in_grace_period>
   <on-trial type="boolean">false</on-trial>
   <feature-level type="string"></feature-level>
+  <invoices type="array">
+    <invoice>
+      <closed type="boolean">true</closed>
+      <created-at type="datetime">2011-07-21T19:04:45Z</created-at>
+      <response-client-message nil="true"></response-client-message>
+      <response-customer-message nil="true"></response-customer-message>
+      <response-message nil="true"></response-message>
+      <token>46089ee32310b4983c6acb0bc02dec955886d411</token>
+      <updated-at type="datetime">2011-07-21T19:05:07Z</updated-at>
+      <price>$0.05</price>
+      <amount type="decimal">0.05</amount>
+      <currency-code>USD</currency-code>
+      <line-items type="array">
+        <line-item>
+          <amount type="decimal">99.0</amount>
+          <currency-code>USD</currency-code>
+          <description>Every 1 month</description>
+          <notes nil="true"></notes>
+          <price>$99.00</price>
+        </line-item>
+        <line-item>
+          <amount type="decimal">-48.99</amount>
+          <currency-code>USD</currency-code>
+          <description>Credit from current subscription</description>
+          <notes nil="true"></notes>
+          <price>$-48.99</price>
+        </line-item>
+        <line-item>
+          <amount type="decimal">-49.96</amount>
+          <currency-code>USD</currency-code>
+          <description>Your store credit</description>
+          <notes nil="true"></notes>
+          <price>$-49.96</price>
+        </line-item>
+      </line-items>
+    </invoice>
+    <invoice>
+      <closed type="boolean">true</closed>
+      <created-at type="datetime">2011-07-21T18:56:52Z</created-at>
+      <response-client-message nil="true"></response-client-message>
+      <response-customer-message nil="true"></response-customer-message>
+      <response-message nil="true"></response-message>
+      <token>4730937c43a57b333b78ba474e6384bfb434bee3</token>
+      <updated-at type="datetime">2011-07-21T18:57:12Z</updated-at>
+      <price>$-49.96</price>
+      <amount type="decimal">-49.96</amount>
+      <currency-code>USD</currency-code>
+      <line-items type="array">
+        <line-item>
+          <amount type="decimal">49.0</amount>
+          <currency-code>USD</currency-code>
+          <description>Every 1 month</description>
+          <notes nil="true"></notes>
+          <price>$49.00</price>
+        </line-item>
+        <line-item>
+          <amount type="decimal">-98.96</amount>
+          <currency-code>USD</currency-code>
+          <description>Credit from current subscription</description>
+          <notes nil="true"></notes>
+          <price>$-98.96</price>
+        </line-item>
+      </line-items>
+    </invoice>
+    <invoice>
+      <closed type="boolean">true</closed>
+      <created-at type="datetime">2011-07-21T18:39:17Z</created-at>
+      <response-client-message nil="true"></response-client-message>
+      <response-customer-message nil="true"></response-customer-message>
+      <response-message nil="true"></response-message>
+      <token>4bf20627d684dbaab231b349b1ed1ae6388f4ffc</token>
+      <updated-at type="datetime">2011-07-21T18:39:32Z</updated-at>
+      <price>$50.00</price>
+      <amount type="decimal">50.0</amount>
+      <currency-code>USD</currency-code>
+      <line-items type="array">
+        <line-item>
+          <amount type="decimal">99.0</amount>
+          <currency-code>USD</currency-code>
+          <description>Every 1 month</description>
+          <notes nil="true"></notes>
+          <price>$99.00</price>
+        </line-item>
+        <line-item>
+          <amount type="decimal">-49.0</amount>
+          <currency-code>USD</currency-code>
+          <description>Credit from current subscription</description>
+          <notes nil="true"></notes>
+          <price>$-49.00</price>
+        </line-item>
+      </line-items>
+    </invoice>
+    <invoice>
+      <closed type="boolean">true</closed>
+      <created-at type="datetime">2011-07-21T18:15:11Z</created-at>
+      <response-client-message nil="true"></response-client-message>
+      <response-customer-message nil="true"></response-customer-message>
+      <response-message nil="true"></response-message>
+      <token>a5190437c9651aa77ac6e39e9833b579bff4658e</token>
+      <updated-at type="datetime">2011-07-21T18:15:36Z</updated-at>
+      <price>$49.00</price>
+      <amount type="decimal">49.0</amount>
+      <currency-code>USD</currency-code>
+      <line-items type="array">
+        <line-item>
+          <amount type="decimal">49.0</amount>
+          <currency-code>USD</currency-code>
+          <description>Every 1 month</description>
+          <notes nil="true"></notes>
+          <price>$49.00</price>
+        </line-item>
+      </line-items>
+    </invoice>
+    <invoice>
+      <closed type="boolean">true</closed>
+      <created-at type="datetime">2011-07-21T18:14:07Z</created-at>
+      <response-client-message nil="true"></response-client-message>
+      <response-customer-message nil="true"></response-customer-message>
+      <response-message nil="true"></response-message>
+      <token>ea7a657f68908279fdc33c8cf1c7037c4a2eec2d</token>
+      <updated-at type="datetime">2011-07-21T18:14:32Z</updated-at>
+      <price>$0.00</price>
+      <amount type="decimal">0.0</amount>
+      <currency-code>USD</currency-code>
+      <line-items type="array">
+        <line-item>
+          <amount type="decimal">0.0</amount>
+          <currency-code>USD</currency-code>
+          <description>Initial 1 month</description>
+          <notes>Subsequent Time Periods are $49.00 every 1 month</notes>
+          <price>$0.00</price>
+        </line-item>
+      </line-items>
+    </invoice>
+  </invoices>
 </subscriber>

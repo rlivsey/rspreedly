@@ -22,6 +22,15 @@ describe RSpreedly::Subscriber do
 
       RSpreedly::Subscriber.find(42).should be_a(RSpreedly::Subscriber)
     end
+
+    it "should include invoices on the Subscriber" do
+      stub_request(:get, spreedly_url("/subscribers/42.xml")).
+        to_return(:body => fixture("subscriber.xml"), :status => 200)
+
+      subscriber = RSpreedly::Subscriber.find(42)
+      subscriber.invoices.size.should == 5
+      subscriber.invoices.select{|x| x.is_a?(RSpreedly::Invoice )}.size.should == 5
+    end
   end
 
   describe ".all" do

@@ -26,13 +26,14 @@ module RSpreedly
                   :store_credit_currency_code,
                   :subscription_plan_name,
                   :token,
-                  :updated_at
+                  :updated_at,
+                  :invoices
 
     class << self
 
       # Get a subscriber’s details
-      # GET /api/v4/[short site name]/subscribers/[subscriber id].xml    
-      def find(id)      
+      # GET /api/v4/[short site name]/subscribers/[subscriber id].xml
+      def find(id)
         return all if id == :all
 
         begin
@@ -44,7 +45,7 @@ module RSpreedly
       end
 
       # Get a list of all subscribers (more)
-      # GET /api/v4/[short site name]/subscribers.xml    
+      # GET /api/v4/[short site name]/subscribers.xml
       def all
         response = api_request(:get, "/subscribers.xml")
         return [] unless response.has_key?("subscribers")
@@ -54,11 +55,21 @@ module RSpreedly
       # Clear all subscribers from a *test* site (more)
       # DELETE /api/v4/[short site name]/subscribers.xml
       def delete_all
-        !! api_request(:delete, "/subscribers.xml")      
+        !! api_request(:delete, "/subscribers.xml")
       end
 
       alias_method :destroy_all, :delete_all
 
+    end
+
+    def invoices=(data)
+      @invoices = []
+      data.each do |item|
+        if item.is_a? Hash
+          item = RSpreedly::Invoice.new(item)
+        end
+        @invoices << item
+      end
     end
 
     def new_record?
@@ -74,7 +85,7 @@ module RSpreedly
     end
 
     # Create a subscriber (more)
-    # POST /api/v4/[short site name]/subscribers.xml    
+    # POST /api/v4/[short site name]/subscribers.xml
     def create!
       result = api_request(:post, "/subscribers.xml", :body => self.to_xml)
       self.attributes = result["subscriber"]
@@ -92,7 +103,7 @@ module RSpreedly
     end
 
     # Update a Subscriber (more)
-    # PUT /api/v4/[short site name]/subscribers/[subscriber id].xml    
+    # PUT /api/v4/[short site name]/subscribers/[subscriber id].xml
     def update!
       !! api_request(:put, "/subscribers/#{self.customer_id}.xml", :body => self.to_xml(:exclude => [:customer_id]))
     end
@@ -104,22 +115,22 @@ module RSpreedly
         # gulp those errors down
         # TODO - set self.errors or something?
         nil
-      end      
+      end
     end
 
     # Delete one subscriber from a *test* site (more)
-    # DELETE /api/v4/[short site name]/subscribers/[subscriber id].xml    
+    # DELETE /api/v4/[short site name]/subscribers/[subscriber id].xml
     def destroy
       begin
         !! api_request(:delete, "/subscribers/#{self.customer_id}.xml")
       rescue RSpreedly::Error::NotFound
         nil
-      end      
+      end
     end
     alias_method :delete, :destroy
 
     # Give a subscriber a complimentary subscription (more)
-    # POST /api/v4/[short site name]/subscribers/[subscriber id]/complimentary_subscriptions.xml    
+    # POST /api/v4/[short site name]/subscribers/[subscriber id]/complimentary_subscriptions.xml
     def comp_subscription(subscription)
       result = api_request(:post, "/subscribers/#{self.customer_id}/complimentary_subscriptions.xml", :body => subscription.to_xml)
       self.attributes = result["subscriber"]
@@ -154,7 +165,7 @@ module RSpreedly
     def subscribe_to_free_trial(plan)
       result = api_request(:post, "/subscribers/#{self.customer_id}/subscribe_to_free_trial.xml", :body => plan.to_xml)
       self.attributes = result["subscriber"]
-      true      
+      true
     end
 
     # Programatically Allow Another Free Trial (more)
@@ -162,33 +173,33 @@ module RSpreedly
     def allow_free_trial
       result = api_request(:post, "/subscribers/#{self.customer_id}/allow_free_trial.xml")
       self.attributes = result["subscriber"]
-      true            
+      true
     end
-    
+
     def grant_lifetime_subscription(feature_level)
       subscription = LifetimeComplimentarySubscription.new(:feature_level => feature_level)
       result = api_request(:post, "/subscribers/#{self.customer_id}/lifetime_complimentary_subscriptions.xml", :body => subscription.to_xml)
       self.attributes = result["subscriber"]
       true
     end
-    
+
     def to_xml(opts={})
-      
+
       # the api doesn't let us send these things
       # so let's strip them out of the XML
       exclude = [
-        :active,       :active_until,               :card_expires_before_next_auto_renew, 
-        :created_at,   :eligible_for_free_trial,    :feature_level, 
-        :grace_until,  :in_grace_period,            :lifetime_subscription, 
-        :on_trial,     :ready_to_renew,             :recurring, 
-        :store_credit, :store_credit_currency_code, :subscription_plan_name,   
+        :active,       :active_until,               :card_expires_before_next_auto_renew,
+        :created_at,   :eligible_for_free_trial,    :feature_level,
+        :grace_until,  :in_grace_period,            :lifetime_subscription,
+        :on_trial,     :ready_to_renew,             :recurring,
+        :store_credit, :store_credit_currency_code, :subscription_plan_name,
         :token,        :updated_at,                 :ready_to_renew_since
       ]
-      
+
       opts[:exclude] ||= []
       opts[:exclude] |= exclude
-      
-      super(opts)      
+
+      super(opts)
     end
   end
 end
