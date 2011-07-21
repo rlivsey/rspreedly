@@ -26,7 +26,7 @@ module RSpreedly
     # there's no API method for just getting one plan, so we fake it!
     def self.find(id)
       return all if id == :all
-      all.find{|plan| plan.id == id}
+      all.find{|plan| plan.id == id.to_i}
     end
     
     # Get a list of all subscription plans (more)
@@ -36,5 +36,12 @@ module RSpreedly
       return [] unless response.has_key?("subscription_plans")
       response["subscription_plans"].collect{|data| SubscriptionPlan.new(data)}
     end
+    
+    # Get a list of all active subscription plans (more)
+    # GET /api/v4/[short site name]/subscription_plans.xml
+    def self.active
+      all.reject { |plan| !plan.enabled }
+    end
+    
   end
 end

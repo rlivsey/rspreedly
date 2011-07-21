@@ -41,4 +41,18 @@ describe RSpreedly::SubscriptionPlan do
       RSpreedly::SubscriptionPlan.all.select{|x| x.is_a?(RSpreedly::SubscriptionPlan )}.size.should == 4
     end
   end
+  
+  describe ".active" do
+    it "should return an empty array if there are no plans at all" do
+      stub_http_with_fixture("no_plans.xml", 200)
+      RSpreedly::SubscriptionPlan.active.should == []
+    end
+
+    it "should return an array of active SubscriptionPlans if there are any to find" do
+      stub_http_with_fixture("subscription_plan_list.xml", 200)
+      RSpreedly::SubscriptionPlan.active.size.should == 2
+      RSpreedly::SubscriptionPlan.active.select{|x| x.is_a?(RSpreedly::SubscriptionPlan )}.size.should == 2
+    end
+  end
+  
 end
