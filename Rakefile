@@ -20,7 +20,7 @@ spec = Gem::Specification.new do |s|
 
   # Change these as appropriate
   s.name              = "rspreedly"
-  s.version           = "0.1.14"
+  s.version           = "0.1.15"
   s.summary           = "Ruby library for the Spreedly API"
   s.author            = "Richard Livsey"
   s.email             = "richard@livsey.org"
