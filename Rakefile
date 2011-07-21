@@ -31,7 +31,7 @@ spec = Gem::Specification.new do |s|
   s.rdoc_options      = %w(--main README.rdoc)
 
   # Add any extra files to include in the gem
-  s.files             = %w(LICENSE Rakefile README.rdoc rspreedly.gemspec VERSION) + Dir.glob("{spec,lib}/**/*")
+  s.files             = %w(LICENSE Rakefile README.rdoc rspreedly.gemspec) + Dir.glob("{spec,lib}/**/*")
   s.require_paths     = ["lib"]
 
   # If you want to depend on other gems, add them here, along with any
@@ -40,6 +40,7 @@ spec = Gem::Specification.new do |s|
 
   # If your tests use any gems, include them here
   s.add_development_dependency("rspec")
+  s.add_development_dependency("webmock")
 end
 
 # This task actually builds the gem. We also regenerate a static
@@ -47,7 +48,7 @@ end
 # be automatically building a gem for this project. If you're not
 # using GitHub, edit as appropriate.
 #
-# To publish your gem online, install the 'gemcutter' gem; Read more 
+# To publish your gem online, install the 'gemcutter' gem; Read more
 # about that here: http://gemcutter.org/pages/gem_docs
 Gem::PackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
