@@ -474,6 +474,57 @@ describe RSpreedly::Subscriber do
     end
   end
 
+  describe "#credit" do
+    before(:each) do
+      @subscriber = RSpreedly::Subscriber.new(:customer_id => 42, :feature_level => "Lowly")
+      @credit_amount = 5
+    end
+
+    it "should return true if successful" do
+      stub_request(:post, spreedly_url("/subscribers/42/credit.xml")).
+        to_return(:body => fixture("credit_success.xml"), :status => 201)
+
+      @subscriber.credit(@credit_amount).should be_true
+      @subscriber.store_credit.should == @credit_amount
+    end
+
+    it "should raise NotFound if the subscriber doesn't exist" do
+      stub_request(:post, spreedly_url("/subscribers/42/credit.xml")).
+        to_return(:body => fixture("subscriber_not_found.xml"), :status => 404)
+
+      lambda{
+        @subscriber.credit(@credit_amount)
+      }.should raise_error(RSpreedly::Error::NotFound)
+    end
+
+    it "should raise BadRequest if validation fails on the subscription" do
+      stub_request(:post, spreedly_url("/subscribers/42/credit.xml")).
+        to_return(:body => fixture("credit_not_valid.xml"), :status => 422)
+
+      lambda{
+        @subscriber.credit(@credit_amount)
+      }.should raise_error(RSpreedly::Error::BadRequest)
+    end
+
+    it "should increment store_credit" do
+      stub_request(:post, spreedly_url("/subscribers/42/credit.xml")).
+        to_return(:body => fixture("credit_success.xml"), :status => 201)
+
+      @subscriber.store_credit = 5
+      @subscriber.credit(5).should be_true
+      @subscriber.store_credit.should == 10
+    end
+
+    it "should decrement store_credit" do
+      stub_request(:post, spreedly_url("/subscribers/42/credit.xml")).
+        to_return(:body => fixture("credit_success.xml"), :status => 201)
+
+      @subscriber.store_credit = 5
+      @subscriber.credit(-5).should be_true
+      @subscriber.store_credit.should == 0
+    end
+  end
+
   describe "#stop_auto_renew" do
     before(:each) do
       @subscriber = RSpreedly::Subscriber.new(:customer_id => 42)

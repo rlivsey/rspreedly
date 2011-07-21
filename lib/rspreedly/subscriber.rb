@@ -19,6 +19,7 @@ module RSpreedly
                   :on_trial,
                   :payment_method,
                   :ready_to_renew,
+                  :ready_to_renew_since,
                   :recurring,
                   :screen_name,
                   :store_credit,
@@ -130,7 +131,16 @@ module RSpreedly
     def comp_time_extension(extension)
       result = api_request(:post, "/subscribers/#{self.customer_id}/complimentary_time_extensions.xml", :body => extension.to_xml)
       self.attributes = result["subscriber"]
-      true      
+      true
+    end
+
+    # Give a subscriber a credit (or reduce credit by supplying a negative value (more)
+    # POST /api/v4[short site name]/subscribers/[subscriber id]/credit.xml
+    def credit(amount)
+      credit = Credit.new(:amount => amount)
+      result = api_request(:post, "/subscribers/#{self.customer_id}/credit.xml", :body => credit.to_xml)
+      self.store_credit = (self.store_credit || 0) + amount
+      true
     end
 
     # Programatically Stopping Auto Renew of a Subscriber (more)
@@ -172,7 +182,7 @@ module RSpreedly
         :grace_until,  :in_grace_period,            :lifetime_subscription, 
         :on_trial,     :ready_to_renew,             :recurring, 
         :store_credit, :store_credit_currency_code, :subscription_plan_name,   
-        :token,        :updated_at
+        :token,        :updated_at,                 :ready_to_renew_since
       ]
       
       opts[:exclude] ||= []
