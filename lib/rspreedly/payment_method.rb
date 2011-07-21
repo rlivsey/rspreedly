@@ -6,5 +6,10 @@ module RSpreedly
                     :address1, :address2, :city, :state, :zip, :country,
                     :phone_number
     end
+    class OnFile < Base
+       def to_xml(opts=nil)
+         "<payment> <account-type>on-file</account-type> </payment>"
+       end
+    end
   end
 end
