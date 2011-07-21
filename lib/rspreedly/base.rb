@@ -8,8 +8,8 @@ module RSpreedly
     attr_reader :errors
 
     def self.api_request(type, path, options={})
-      site_name = RSpreedly::Config.site_name.class == Array ? RSpreedly::Config.site_name.first : RSpreedly::Config.site_name
-      api_key = RSpreedly::Config.api_key.class == Array ?  RSpreedly::Config.api_key.first : RSpreedly::Config.api_key
+      site_name = RSpreedly::Config.site_name
+      api_key = RSpreedly::Config.api_key
       path = "/#{site_name}#{path}"
 
       options.merge!({
