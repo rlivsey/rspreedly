@@ -146,10 +146,10 @@ module RSpreedly
     end
 
     # Give a subscriber a credit (or reduce credit by supplying a negative value (more)
-    # POST /api/v4[short site name]/subscribers/[subscriber id]/credit.xml
+    # POST /api/v4[short site name]/subscribers/[subscriber id]/credits.xml
     def credit(amount)
       credit = Credit.new(:amount => amount)
-      result = api_request(:post, "/subscribers/#{self.customer_id}/credit.xml", :body => credit.to_xml)
+      result = api_request(:post, "/subscribers/#{self.customer_id}/credits.xml", :body => credit.to_xml)
       self.store_credit = (self.store_credit || 0) + amount
       true
     end
