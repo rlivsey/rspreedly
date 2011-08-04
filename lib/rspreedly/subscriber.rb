@@ -105,7 +105,7 @@ module RSpreedly
     # Update a Subscriber (more)
     # PUT /api/v4/[short site name]/subscribers/[subscriber id].xml
     def update!
-      !! api_request(:put, "/subscribers/#{self.customer_id}.xml", :body => self.to_xml(:exclude => [:customer_id]))
+      !! api_request(:put, "/subscribers/#{self.customer_id}.xml", :body => self.to_xml(:exclude => [:customer_id, :invoices]))
     end
 
     def update
