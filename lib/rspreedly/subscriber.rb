@@ -105,7 +105,7 @@ module RSpreedly
     # Update a Subscriber (more)
     # PUT /api/v4/[short site name]/subscribers/[subscriber id].xml
     def update!
-      !! api_request(:put, "/subscribers/#{self.customer_id}.xml", :body => self.to_xml(:exclude => [:customer_id, :invoices]))
+      !! api_request(:put, "/subscribers/#{self.customer_id}.xml", :body => self.to_xml(:exclude => [:customer_id]))
     end
 
     def update
@@ -193,7 +193,8 @@ module RSpreedly
         :grace_until,  :in_grace_period,            :lifetime_subscription,
         :on_trial,     :ready_to_renew,             :recurring,
         :store_credit, :store_credit_currency_code, :subscription_plan_name,
-        :token,        :updated_at,                 :ready_to_renew_since
+        :token,        :updated_at,                 :ready_to_renew_since,
+        :invoices
       ]
 
       opts[:exclude] ||= []
