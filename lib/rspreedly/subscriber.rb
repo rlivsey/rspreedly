@@ -182,6 +182,16 @@ module RSpreedly
       self.attributes = result["subscriber"]
       true
     end
+    
+    def subscribe_link(subscription_plan_id, screen_name, return_url=nil)
+      params = return_url.nil? ? "" : "?return_url=" + return_url
+      "https://spreedly.com/#{RSpreedly::Config.site_name}/subscribers/#{self.customer_id}/subscribe/#{subscription_plan_id}/#{screen_name}#{params}"
+    end
+    
+    def subscription_link(return_url=nil)
+      params = return_url.nil? ? "" : "?return_url=" + return_url
+      "https://spreedly.com/#{RSpreedly::Config.site_name}/subscriber_accounts/#{self.token}#{params}"
+    end
 
     def to_xml(opts={})
 

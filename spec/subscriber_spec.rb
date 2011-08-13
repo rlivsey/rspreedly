@@ -704,5 +704,25 @@ describe RSpreedly::Subscriber do
         @subscriber.grant_lifetime_subscription("Something")
       }.should raise_error(RSpreedly::Error::BadRequest)
     end
+    
+    it "should return subscribe_link for subscriber without return_url" do
+      @subscriber.subscribe_link('99', 'spreedster').should == "https://spreedly.com/your-site-name/subscribers/42/subscribe/99/spreedster"
+    end
+    
+    it "should return subscribe_link for subscriber with return_url" do
+      return_url = "http://mydomain.com/response"
+      @subscriber.subscribe_link('99', 'spreedster', return_url).should == "https://spreedly.com/your-site-name/subscribers/42/subscribe/99/spreedster?return_url=http://mydomain.com/response"
+    end
+    
+    it "should return subscription_link for subscriber without return_url" do
+      @subscriber.stub(:token).and_return("my-token")
+      @subscriber.subscription_link.should == "https://spreedly.com/your-site-name/subscriber_accounts/my-token"
+    end
+    
+    it "should return subscription_link for subscriber with return_url" do
+      @subscriber.stub(:token).and_return("my-token")
+      return_url = "http://mydomain.com/response"
+      @subscriber.subscription_link(return_url).should == "https://spreedly.com/your-site-name/subscriber_accounts/my-token?return_url=http://mydomain.com/response"
+    end
   end
 end
