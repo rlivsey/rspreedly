@@ -9,6 +9,22 @@ describe RSpreedly::Subscriber do
       end
     end
 
+    it "should return a Subscriber with an email for an existing subscriber" do
+      stub_request(:get, spreedly_url("/subscribers.xml")).
+        to_return(body: fixture("subscribers.xml"), status: 200)
+
+      subscriber = RSpreedly::Subscriber.find_by_email "new@email.com"
+      subscriber.email.should == "new@email.com"
+    end
+
+    it "should return an array of Subscriber filtered by email" do
+      stub_request(:get, spreedly_url("/subscribers.xml")).
+        to_return(body: fixture("subscribers.xml"), status: 200)
+
+      subscribers = RSpreedly::Subscriber.find_by_email nil
+      subscribers.class.should == Array
+    end
+
     it "should return nil with an id for a subscriber who doesn't exist" do
       stub_request(:get, spreedly_url("/subscribers/42.xml")).
         to_return(:body => fixture("subscriber_not_found.xml"), :status => 404)

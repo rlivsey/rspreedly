@@ -1,3 +1,5 @@
+require 'pry'
+
 module RSpreedly
 
   class Base
@@ -21,7 +23,7 @@ module RSpreedly
 
     def self.do_request(type, path, options)
       begin
-        response = self.send(type.to_s, path, options)      
+        response = self.send(type.to_s, path, options)
       rescue SocketError
         raise(RSpreedly::Error::ConnectionFailed.new, "Failed to connect to payment gateway.")
       end
