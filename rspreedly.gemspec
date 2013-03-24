@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<httparty>, [">= 0.5.0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<webmock>, [">= 0"])
-    s.add_dependency(%q<pry>)
-    s.add_dependency(%q<pry-debugger>)
+    s.add_development_dependency(%q<pry>)
+    s.add_development_dependency(%q<pry-debugger>)
   end
 end
