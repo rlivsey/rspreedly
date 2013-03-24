@@ -52,6 +52,16 @@ module RSpreedly
         response["subscribers"].collect{|data| Subscriber.new(data)}
       end
 
+      # Find subscriber's by a given attribute and get their details
+      def find_by_email(email)
+        subscribers = []
+        all.each do |subscriber|
+          subscribers << subscriber if subscriber.email == email
+        end
+
+        subscribers.count > 1 ? subscribers : subscribers.first
+      end
+
       # Clear all subscribers from a *test* site (more)
       # DELETE /api/v4/[short site name]/subscribers.xml
       def delete_all
